@@ -23,7 +23,7 @@ function MovieInfoPage() {
     useEffect(() => {
         const fetchMovieDetails = async () => {
             const apiKey = "e4ba0188";
-            const url = `http://www.omdbapi.com/?apikey=${apiKey}&i=${imdbID}`;
+            const url = `https://www.omdbapi.com/?apikey=${apiKey}&i=${imdbID}`;
 
             try {
                 const response = await fetch(url);
