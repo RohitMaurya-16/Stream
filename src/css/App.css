@@ -1,0 +1,19 @@
+.app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+}
+
+.main-content {
+    flex: 1;
+    width: 100%;
+    position: relative;
+}
+
+/* Light mode support */
+body.light-mode .app {
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+}

@@ -1,0 +1,145 @@
+.streaming-info {
+    padding: 1.5rem;
+    background: linear-gradient(145deg, #ffffff, #f5f7fa);
+    border-radius: 12px;
+    margin: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.streaming-info-loading,
+.streaming-info-empty {
+    text-align: center;
+    padding: 2rem;
+    color: #64748b;
+    font-style: italic;
+    background: linear-gradient(145deg, #ffffff, #f5f7fa);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.streaming-info-loading::after {
+    content: "...";
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% { content: "."; }
+    33% { content: ".."; }
+    66% { content: "..."; }
+}
+
+.source-type {
+    margin-bottom: 1.5rem;
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.source-type:last-child {
+    margin-bottom: 0;
+}
+
+.source-type h4 {
+    margin: 0 0 1rem 0;
+    color: #1e293b;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.source-type h4::before {
+    content: "";
+    display: block;
+    width: 4px;
+    height: 1.1rem;
+    background: #2196f3;
+    border-radius: 2px;
+}
+
+.platforms {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+}
+
+.platform {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: white;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #1e293b;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.platform:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: rgba(33, 150, 243, 0.3);
+    background: linear-gradient(145deg, #ffffff, #f8faff);
+}
+
+.platform-logo {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    transition: transform 0.3s ease;
+}
+
+.platform:hover .platform-logo {
+    transform: scale(1.1);
+}
+
+.platform span {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #334155;
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .streaming-info {
+        padding: 1rem;
+        margin: 0.75rem;
+    }
+
+    .platforms {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 0.75rem;
+    }
+
+    .platform {
+        padding: 0.6rem 0.8rem;
+    }
+
+    .platform-logo {
+        width: 24px;
+        height: 24px;
+    }
+
+    .platform span {
+        font-size: 0.9rem;
+    }
+} 

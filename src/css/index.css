@@ -1,0 +1,151 @@
+:root {
+    --font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    --line-height: 1.5;
+    --font-weight: 400;
+  
+    /* Light theme colors */
+    --bg-color-light: #ffffff;
+    --text-color-light: #213547;
+    --button-bg-light: #f9f9f9;
+    --link-color-light: #646cff;
+    --link-hover-light: #747bff;
+  
+    /* Dark theme colors */
+    --bg-color-dark: #1a1a1a;
+    --text-color-dark: rgba(255, 255, 255, 0.87);
+    --button-bg-dark: #2a2a2a;
+    --link-color-dark: #646cff;
+    --link-hover-dark: #535bf2;
+  
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+  }
+  
+  body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+    position: relative;
+    font-family: var(--font-family);
+    line-height: var(--line-height);
+    font-weight: var(--font-weight);
+    transition: color 0.3s ease, background-color 0.3s ease;
+  }
+  
+  body.dark-mode {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+  }
+  
+  body.light-mode {
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+  }
+  
+  #root {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  a {
+    font-weight: 500;
+    color: var(--link-color-dark);
+    text-decoration: inherit;
+    transition: color 0.3s ease;
+  }
+  
+  body.light-mode a {
+    color: var(--link-color-light);
+  }
+  
+  body.light-mode a:hover {
+    color: var(--link-hover-light);
+  }
+  
+  a:hover {
+    color: var(--link-hover-dark);
+  }
+  
+  h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+  }
+  
+  button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: var(--button-bg-dark);
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+  
+  button:hover {
+    border-color: var(--link-color-dark);
+  }
+  
+  button:focus,
+  button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+  
+  body.light-mode button {
+    background-color: var(--button-bg-light);
+  }
+  
+  body.light-mode button:hover {
+    border-color: var(--link-color-light);
+  }
+  
+  /* Theme toggle button styles */
+  .theme-toggle {
+    padding: 0.5rem;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 2px solid currentColor;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .theme-toggle:hover {
+    transform: scale(1.1);
+    border-color: var(--link-color-light);
+  }
+  
+  body.dark-mode .theme-toggle:hover {
+    border-color: var(--link-color-dark);
+  }
+  
+  .theme-toggle-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .theme-toggle:hover .theme-toggle-icon {
+    transform: rotate(360deg);
+  }

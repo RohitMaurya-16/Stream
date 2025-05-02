@@ -1,0 +1,307 @@
+.person-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.person-content {
+    background: rgba(20, 20, 20, 0.95);
+    border-radius: 16px;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    z-index: 2;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+}
+
+.person-header {
+    display: flex;
+    gap: 2.5rem;
+    padding: 2.5rem;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.person-image {
+    width: 240px;
+    height: 360px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.person-image:hover {
+    transform: scale(1.02);
+}
+
+.person-info {
+    flex: 1;
+}
+
+.person-info h2 {
+    font-size: 2.5rem;
+    margin: 0 0 1.5rem 0;
+    color: white;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.birth-info,
+.death-info,
+.department {
+    color: #ccc;
+    margin: 0.75rem 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.biography {
+    padding: 2.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.biography h3 {
+    color: white;
+    margin: 0 0 1.5rem 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.biography p {
+    color: #ccc;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.known-for {
+    padding: 2.5rem;
+}
+
+.known-for h3 {
+    color: white;
+    margin: 0 0 1.5rem 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 2rem;
+}
+
+.movie-item {
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.movie-item:hover {
+    transform: translateY(-5px);
+}
+
+.movie-item img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.no-poster {
+    width: 100%;
+    height: 240px;
+    background: linear-gradient(45deg, #2c3e50, #3498db);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.movie-title {
+    color: white;
+    font-size: 1rem;
+    margin: 0.75rem 0;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.character {
+    color: #999;
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    color: white;
+    font-size: 1.2rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+}
+
+.error {
+    padding: 3rem;
+    text-align: center;
+    color: #ff6b6b;
+    background: rgba(255, 107, 107, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+}
+
+.error button {
+    margin-top: 1.5rem;
+    padding: 0.75rem 2rem;
+    background: #ff6b6b;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.error button:hover {
+    background: #ff5252;
+    transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .person-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 2rem;
+    }
+
+    .person-image {
+        width: 200px;
+        height: 300px;
+    }
+
+    .person-info h2 {
+        font-size: 2rem;
+    }
+
+    .biography,
+    .known-for {
+        padding: 2rem;
+    }
+
+    .movies-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .movie-item img,
+    .no-poster {
+        height: 210px;
+    }
+}
+
+@media (max-width: 480px) {
+    .person-content {
+        height: 100vh;
+        max-height: none;
+        border-radius: 0;
+    }
+
+    .person-header {
+        padding: 1.5rem;
+    }
+
+    .person-image {
+        width: 180px;
+        height: 270px;
+    }
+
+    .person-info h2 {
+        font-size: 1.75rem;
+    }
+
+    .biography,
+    .known-for {
+        padding: 1.5rem;
+    }
+
+    .biography p {
+        font-size: 1rem;
+    }
+
+    .movies-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 1rem;
+    }
+
+    .movie-item img,
+    .no-poster {
+        height: 180px;
+    }
+} 
