@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import '../css/MovieInfoPage.css';
+import { getOmdbMovieDetails } from '../services/omdb';
 
 function MovieInfoPage() {
     const { imdbID } = useParams();
-    const navigate = useNavigate();
     const [movieDetails, setMovieDetails] = useState(null);
     const [error, setError] = useState(null);
     const [showStreamOptions, setShowStreamOptions] = useState(false);
@@ -22,24 +22,22 @@ function MovieInfoPage() {
 
     useEffect(() => {
         const fetchMovieDetails = async () => {
-            const apiKey = "e4ba0188";
-            const url = `https://www.omdbapi.com/?apikey=${apiKey}&i=${imdbID}`;
-
             try {
-                const response = await fetch(url);
-                const data = await response.json();
+                const data = await getOmdbMovieDetails(imdbID);
 
                 if (data.Response === "True") {
                     setMovieDetails(data);
                 } else {
-                    setError(data.Error);
+                    setError(data.Error || "Failed to fetch movie details");
                 }
-            } catch (error) {
-                setError("Failed to fetch movie details");
+            } catch (err) {
+                setError(err.message || "Failed to fetch movie details");
             }
         };
 
-        fetchMovieDetails();
+        if (imdbID) {
+            fetchMovieDetails();
+        }
     }, [imdbID]);
 
     if (error) return <div className="error">Error: {error}</div>;

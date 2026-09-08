@@ -130,12 +130,20 @@
     transform: translateY(0);
 }
 
-/* Theme toggle positioning */
-.theme-toggle {
+/* Navbar actions container & Theme toggle positioning */
+.navbar-actions {
     position: absolute;
     top: 0.6rem;
     right: 1.5rem;
-    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.8rem;
+    z-index: 10;
+}
+
+.theme-toggle {
+    position: static;
     transform: scale(0.9);
 }
 
@@ -166,42 +174,106 @@
         font-size: 1rem;
     }
 
-    .theme-toggle {
+    .navbar-actions {
         top: 0.5rem;
         right: 0.8rem;
+        gap: 0.4rem;
+    }
+
+    .theme-toggle {
         transform: scale(0.8);
     }
-}
-/* Navbar actions container */
-.navbar-actions {
-    display: flex;
-    flex-direction: row; /* explicitly sets horizontal layout */
-    align-items: center;
-    gap: 1rem; /* spacing between toggle and buttons */
+
+    .signin-button {
+        padding: 0.35rem 0.7rem;
+        font-size: 0.75rem;
+    }
+
+    .user-profile-badge {
+        padding: 0.2rem 0.5rem;
+        gap: 0.4rem;
+    }
+
+    .user-display-name {
+        max-width: 70px;
+        font-size: 0.75rem;
+    }
+
+    .signout-button {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.7rem;
+    }
 }
 
 
-/* Sign In button styles */
+/* Sign In / Sign Up & User Profile in Navbar */
 .signin-button {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.1rem;
     font-size: 0.875rem;
-    font-weight: 500;
-    color: white;
-    background-color: #2563eb; /* blue-600 */
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(135deg, #e50914, #ff454d);
     border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(229, 9, 20, 0.3);
+}
+
+.signin-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(229, 9, 20, 0.45);
+}
+
+.user-profile-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.user-avatar-circle {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff0f1b, #ff454d);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.user-display-name {
+    font-size: 0.85rem;
+    color: #fff;
+    font-weight: 500;
+    max-width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.signout-button {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
+    transition: all 0.2s ease;
 }
 
-/* Hover effect for Sign In button */
-.signin-button:hover {
-    background-color: #1e40af; /* blue-700 */
+.signout-button:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #fca5a5;
 }
 
-/* Focus state for accessibility */
-.signin-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); /* blue ring */
-}
 

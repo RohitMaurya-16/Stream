@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../css/PersonDetails.css';
-
-const TMDB_API_KEY = "1e58a98830bc8b3f646072c2d4963c7f";
+import { getPersonDetails } from '../services/api';
 
 function PersonDetails({ personId, onClose }) {
     const [person, setPerson] = useState(null);
@@ -12,20 +11,11 @@ function PersonDetails({ personId, onClose }) {
         const fetchPersonDetails = async () => {
             try {
                 setLoading(true);
-                const response = await fetch(
-                    `https://api.themoviedb.org/3/person/${personId}?` +
-                    `api_key=${TMDB_API_KEY}&append_to_response=credits,images`
-                );
-                const data = await response.json();
-                
-                if (response.ok) {
-                    setPerson(data);
-                } else {
-                    throw new Error(data.status_message || 'Failed to fetch person details');
-                }
+                const data = await getPersonDetails(personId);
+                setPerson(data);
             } catch (error) {
                 console.error('Error fetching person details:', error);
-                setError(error.message);
+                setError(error.message || 'Failed to fetch person details');
             } finally {
                 setLoading(false);
             }

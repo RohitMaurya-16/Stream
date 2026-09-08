@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import '../css/News.css';
-
-const NEWS_API_KEY = "2bfdac5a73b846c6823a68065d3d902b";
+import { getMovieNews } from '../services/news';
 
 function News() {
     const { movieTitle } = useParams();
@@ -14,37 +13,8 @@ function News() {
         const fetchNews = async () => {
             try {
                 setLoading(true);
-                // Construct a more focused search query
-                const searchQuery = `"${movieTitle}" AND (movie OR film OR cinema OR review OR premiere)`;
-                
-                const response = await fetch(
-                    `https://newsapi.org/v2/everything?` + 
-                    `q=${encodeURIComponent(searchQuery)}` +
-                    `&apiKey=${NEWS_API_KEY}` +
-                    `&language=en` +
-                    `&sortBy=publishedAt` +
-                    `&pageSize=12` +
-                    `&searchIn=title,description`
-                );
-                
-                const data = await response.json();
-                
-                if (data.status === 'ok' && data.articles) {
-                    // Filter and process the articles
-                    const filteredNews = data.articles
-                        .filter(article => (
-                            article.urlToImage && 
-                            article.title && 
-                            article.description &&
-                            !article.title.includes('[Removed]')
-                        ))
-                        .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
-                        .slice(0, 12);
-                    
-                    setNews(filteredNews);
-                } else {
-                    throw new Error(data.message || 'Failed to fetch news');
-                }
+                const filteredNews = await getMovieNews(movieTitle);
+                setNews(filteredNews);
             } catch (error) {
                 console.error('News fetch error:', error);
                 setError(error.message || 'Failed to fetch news');

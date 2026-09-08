@@ -6,10 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "start": "vite preview",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.116.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.5.3"

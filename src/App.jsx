@@ -9,10 +9,13 @@ import News from "./pages/News";
 import Subscription from "./pages/Subscription";
 import Recommendations from "./pages/Recommendations";
 import NavBar from "./components/NavBar";
+import AuthModal from "./components/AuthModal";
 import { MovieProvider } from "./contexts/MovieContext";
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
 
+function AppContent() {
+    const { authModalOpen, authModalTab, closeAuthModal } = useAuth();
 
-function App() {
     return (
         <MovieProvider>
             <div className="app">
@@ -20,47 +23,29 @@ function App() {
                 <main className="main-content">
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        
-                        
-                        {/* Protected Routes */}
-                        <Route
-                            path="/favorites"
-                            element={
-                                <>
-                                    
-                                        <Favorites />
-                                    
-                                    
-                                </>
-                            }
-                        />
-                        <Route
-                            path="/recommendations"
-                            element={
-                                <>
-                                    
-                                        <Recommendations />
-                                  
-                                </>
-                            }
-                        />
-                        <Route
-                            path="/subscriptions"
-                            element={
-                                <>
-                                  
-                                        <Subscription />
-                                    
-                                </>
-                            }
-                        />
+                        <Route path="/favorites" element={<Favorites />} />
+                        <Route path="/recommendations" element={<Recommendations />} />
+                        <Route path="/subscriptions" element={<Subscription />} />
                         <Route path="/movies/:id" element={<MovieDetails />} />
                         <Route path="/info/:imdbID" element={<MovieInfoPage />} />
                         <Route path="/news/:movieTitle" element={<News />} />
                     </Routes>
                 </main>
+                <AuthModal
+                    isOpen={authModalOpen}
+                    onClose={closeAuthModal}
+                    initialTab={authModalTab}
+                />
             </div>
         </MovieProvider>
+    );
+}
+
+function App() {
+    return (
+        <AuthProvider>
+            <AppContent />
+        </AuthProvider>
     );
 }
 

@@ -1,9 +1,11 @@
-const TMDB_API_KEY = "1e58a98830bc8b3f646072c2d4963c7f";
-const YOUTUBE_API_KEY = "AIzaSyCofcJoFTC4L7Y8rbBaOrILKjVTF6CRZds";
-const TMDB_BASE_URL = "https://api.themoviedb.org/3";
-const YOUTUBE_BASE_URL = "https://www.googleapis.com/youtube/v3";
-const WATCHMODE_API_KEY = "bpQtOCMxR1m6qtxR3hNjd2HZvPEi2VwLNxKE7DWV";
-const WATCHMODE_BASE_URL = "https://api.watchmode.com/v1";
+import { CONFIG } from './config';
+
+const TMDB_API_KEY = CONFIG.TMDB.API_KEY;
+const YOUTUBE_API_KEY = CONFIG.YOUTUBE.API_KEY;
+const TMDB_BASE_URL = CONFIG.TMDB.BASE_URL;
+const YOUTUBE_BASE_URL = CONFIG.YOUTUBE.BASE_URL;
+const WATCHMODE_API_KEY = CONFIG.WATCHMODE.API_KEY;
+const WATCHMODE_BASE_URL = CONFIG.WATCHMODE.BASE_URL;
 
 
 // Function to get movie details
@@ -224,3 +226,21 @@ function normalizeSourceType(type) {
     };
     return typeMap[type.toLowerCase()] || 'other';
 }
+
+// Function to get person/cast details
+export const getPersonDetails = async (personId) => {
+    try {
+        const response = await fetch(
+            `${TMDB_BASE_URL}/person/${personId}?api_key=${TMDB_API_KEY}&append_to_response=credits,images`
+        );
+        const data = await response.json();
+        if (response.ok) {
+            return data;
+        } else {
+            throw new Error(data.status_message || 'Failed to fetch person details');
+        }
+    } catch (error) {
+        console.error('Error fetching person details:', error);
+        throw error;
+    }
+};

@@ -1,9 +1,19 @@
 import { Link } from "react-router-dom";
-
-import "../css/Navbar.css"
+import "../css/Navbar.css";
 import DarkModeToggle from "./DarkModeToggle";
+import { useAuth } from "../contexts/AuthContext";
 
 function NavBar() {
+    const { user, signOut, openAuthModal } = useAuth();
+
+    // Extract user display name or email prefix
+    const displayName = user?.user_metadata?.full_name 
+        || user?.user_metadata?.name 
+        || user?.email?.split('@')[0] 
+        || "User";
+
+    const initial = displayName.charAt(0).toUpperCase();
+
     return (
         <nav className="navbar">
             <Link to="/" className="navbar-brand">
@@ -33,12 +43,32 @@ function NavBar() {
                 </Link>
             </div>
             <div className="navbar-actions">
-    <DarkModeToggle />
-   
-</div>
-
+                <DarkModeToggle />
+                {user ? (
+                    <div className="user-profile-badge">
+                        <div className="user-avatar-circle" title={user.email}>{initial}</div>
+                        <span className="user-display-name" title={user.email}>{displayName}</span>
+                        <button 
+                            type="button" 
+                            className="signout-button" 
+                            onClick={signOut}
+                            title="Sign out of your account"
+                        >
+                            Log Out
+                        </button>
+                    </div>
+                ) : (
+                    <button 
+                        type="button" 
+                        className="signin-button" 
+                        onClick={() => openAuthModal('login')}
+                    >
+                        Sign In
+                    </button>
+                )}
+            </div>
         </nav>
     );
 }
 
-export default NavBar;   
+export default NavBar;
